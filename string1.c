@@ -40,7 +40,8 @@ void _puts(char *str)
 	if (str == NULL)
 		return;
 
-	puts(str);
+	printf("%s", str);
+	fflush(stdout);
 }
 
 /**
