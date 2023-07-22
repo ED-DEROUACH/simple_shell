@@ -90,6 +90,7 @@ typedef struct passinfo
 	char **cmd_buf_type;
 	int readfd;
 	int histcount;
+	int cmd_buf_type;
 } info_t;
 
 #define INFO_INIT \
