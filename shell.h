@@ -49,6 +49,15 @@ typedef struct liststr
 	struct liststr *next;
 } list_t;
 
+typedef struct info_s
+{
+	int status;
+	int cmd_buf_type;
+	list_t *alias;
+	char **argv;
+	list_t *env;
+} info_t;
+
 /**
  * struct passinfo - has pseudo arguments to pass info a function
  * @arg: string containing arguments
