@@ -1,6 +1,25 @@
 #include "shell.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
+/**
+ * strdup - test if current char in buffer is a chain delimeter
+ * @s: string to duplicate
+ * 
+ * Returns a pointer to a new string that is a copy of s.
+ */
+char *strdup(const char *s) 
+{
+    size_t len = strlen(s) + 1;
+    char *dup = (char *)malloc(len);
+    if (dup == NULL)
+    {
+        return (NULL); // Échec de l'allocation
+    }
+    strcpy(dup, s);
+    return (dup);
+}
 
 /**
  * is_chain - test if current char in buffer is a chain delimeter
