@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * clear_info - initializes all the struct info_t types with NULL
@@ -26,7 +26,7 @@ void set_info(info_t *info, char **av)
 	info->fname = av[0];
 	if (info->arg)
 	{
-		info->argv = _strtow(info->arg, "\t");
+		info->argv = _strtow2(info->arg, "\t");
 		if (!info->argv)
 		{
 			info->argv = malloc(sizeof(char *) * 2);

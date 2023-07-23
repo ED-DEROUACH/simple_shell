@@ -56,7 +56,7 @@ int _mysetenv(info_t *info)
  */
 int _myunsetenv(info_t *info)
 {
-	int x, i = 1;
+	int i = 1;
 
 	if (info->argc == 1)
 	{
@@ -84,7 +84,7 @@ int populate_env_list(info_t *info)
 	i = 0;
 	while (environ[i])
 	{
-		add_node__end(&node, environ[1], 0);
+		add_node_end(&node, environ[1], 0);
 		i++;
 	}
 	info->env = node;

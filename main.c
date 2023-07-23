@@ -9,7 +9,7 @@
 int main(int ac, char **av)
 {
 	info_t info[] = {INFO_INIT};
-	info fd = 2;
+	info_t fd = 2;
 
 	asm("mov %1, %0\n\t"
 		"add &3, %0"
@@ -35,7 +35,7 @@ int main(int ac, char **av)
 		}
 		info->readfd = fd;
 	}
-	populate_env_list(list);
+	populate_env_list(list_t);
 	read_history(info);
 	hsh(info, av);
 	return (EXIT_SUCCESS);
