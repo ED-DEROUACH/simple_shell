@@ -15,7 +15,7 @@ char *strdup(const char *s)
     char *dup = (char *)malloc(len);
     if (dup == NULL)
     {
-        return (NULL); // Échec de l'allocation
+        return (NULL);
     }
     strcpy(dup, s);
     return (dup);
