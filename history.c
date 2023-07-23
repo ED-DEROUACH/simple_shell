@@ -9,19 +9,19 @@
 
 char *get_history_file(info_t *info)
 {
-	char *tuf, *tir;
+	char *buf, *dir;
 
-	tir = _getenv(info_t *, "HOME=");
-	if (!tir)
+	dir = _getenv(info, "HOME=");
+	if (!dir)
 		return (NULL);
-	tuf = malloc(sizeof(char) * (_strlen(tir) + _strlen(HIST_FILE) + 2));
-	if (!tuf)
+	buf = malloc(sizeof(char) * (_strlen(dir) + _strlen(HIST_FILE) + 2));
+	if (!buf)
 		return (NULL);
-	tuf[0] = 0;
-	_strcpy(tuf, tir);
-	_strcat(tuf, "/");
-	_strcat(tuf, HIST_FILE);
-	return (tuf);
+	buf[0] = 0;
+	_strcpy(buf, dir);
+	_strcat(buf, "/");
+	_strcat(buf, HIST_FILE);
+	return (buf);
 }
 
 /**
