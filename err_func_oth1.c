@@ -38,7 +38,7 @@ void print_error(info_t *info, char *es)
 {
 	_eputs(info->fname);
 	_eputs(": ");
-	printf_d(info->line_count, STDERR_FILENO);
+	print_d(info->line_count, STDERR_FILENO);
 	_eputs(": ");
 	_eputs(info->argv[0]);
 	_eputs(": ");
@@ -126,9 +126,9 @@ void remove_comments(char *b)
 
 	while (b[j] != '\0')
 	{
-		if (b[j] == '#' && (i == 0 || b[i - 1] == ' '))
+		if (b[j] == '#' && (j == 0 || b[j - 1] == ' '))
 		{
-			b[i] = '\0';
+			b[j] = '\0';
 			break;
 		}
 		j++;
