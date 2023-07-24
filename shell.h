@@ -107,6 +107,14 @@ typedef struct builtin
 	int (*func)(info_t *);
 } builtin_table;
 
+static builtin_table builtins[] = {
+    {"exit", _myexit},
+    {"help", _myhelp}, 
+    {"cd", _mycd},
+
+    {NULL, NULL}
+};
+
 /* environment1_oth.c */
 char *_getenv(info_t *, const char *);
 int _myenv(info_t *);
