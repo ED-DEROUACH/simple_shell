@@ -218,4 +218,6 @@ int _myexit(info_t *);
 int _mycd(info_t *);
 int _myhelp(info_t *);
 
+int is_cmd(info_t *, char *);
+
 #endif
