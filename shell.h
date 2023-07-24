@@ -220,4 +220,6 @@ int _myhelp(info_t *);
 
 int is_cmd(info_t *, char *);
 
+char *find_path(info_t *, char *, char *);
+
 #endif
