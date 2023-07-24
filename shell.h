@@ -213,7 +213,7 @@ int replace_alias(info_t *);
 int replace_vars(info_t *);
 int replace_string(char **old, char *new);
 
-/* toem_builtin.c */
+/* added_by_ouss_builtin.c */
 int _myexit(info_t *);
 int _mycd(info_t *);
 int _myhelp(info_t *);
