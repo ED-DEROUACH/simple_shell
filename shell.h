@@ -225,7 +225,7 @@ char *find_path(info_t *, char *, char *);
 
 ssize_t get_input(info_t *);
 
-/* Déclaration de _strlen */
+// Déclaration de _strlen
 int _strlen(char *);
 char *starts_with(const char *, const char *);
 char *_strcat(char *, char *);
