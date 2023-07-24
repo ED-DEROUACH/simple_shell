@@ -39,7 +39,7 @@ list_t *add_node(list_t **head, const char *str, int num)
  * @num: node index
  * Return: list
  */
-list_t add_node_end(list_t **head, const char *str, int num)
+list_t *add_node_end(list_t **head, const char *str, int num)
 {
 	list_t *new_node, *node;
 
@@ -66,7 +66,7 @@ list_t add_node_end(list_t **head, const char *str, int num)
 		{
 			node = node->next;
 		}
-		node_next = new_node;
+		node->next = new_node;
 	}
 	else
 		*head = new_node;
@@ -103,8 +103,8 @@ int delete_node_at_index(list_t **head, unsigned int id)
 	list_t *node, *pre_node;
 	unsigned int i = 0;
 
-	if (!head || (*head))
-		return (NULL);
+	if (!head || !(*head))
+		return (0);
 	if (id == 0)
 	{
 		node = *head;

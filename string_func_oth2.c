@@ -63,7 +63,7 @@ char **strtow2(char *s, char dlm)
 		return (NULL);
 	while (s[i] != '\0')
 	{
-		if (s[i] != dlm && (s[i + 1] == dlm || !s[i + 1]) || s[i + 1] == dlm)
+		if ((s[i] != dlm && s[i + 1] == dlm) || (s[i] != dlm && !s[i + 1]) || s[i + 1] == dlm)
 			nw++;
 		i++;
 	}
