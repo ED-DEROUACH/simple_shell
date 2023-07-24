@@ -225,13 +225,11 @@ char *find_path(info_t *, char *, char *);
 
 ssize_t get_input(info_t *);
 
-/* Declaration  _strlen */ 
+
 int _strlen(char *);
 
-/* Declaration starts_with */
 char *starts_with(const char *, const char *);
 
-/* Declaration _strcat */
 char *_strcat(char *, char *);
 
 #endif
