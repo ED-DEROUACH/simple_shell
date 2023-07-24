@@ -218,8 +218,11 @@ int _myexit(info_t *);
 int _mycd(info_t *);
 int _myhelp(info_t *);
 
+/* added_by_ouss */
 int is_cmd(info_t *, char *);
 
 char *find_path(info_t *, char *, char *);
+
+ssize_t get_input(info_t *);
 
 #endif
