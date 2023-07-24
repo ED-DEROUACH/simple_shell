@@ -227,11 +227,7 @@ ssize_t get_input(info_t *);
 
 /* Déclaration de _strlen */
 int _strlen(char *);
-
-/* Déclaration de starts_with */
 char *starts_with(const char *, const char *);
-
-/* Déclaration de _strcat */
 char *_strcat(char *, char *);
 
 #endif
