@@ -232,6 +232,4 @@ int replace_alias(info_t *);
 int replace_vars(info_t *);
 int replace_string(char **, char *);
 
-void set_info(info_t *info, char **av)
-
 #endif
