@@ -43,9 +43,10 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 }
 
 /**
- * get_input - gets a line
- * @info: struct
- * Return: read bytes
+ * get_input - gets input from user
+ * @info: the parameter struct
+ *
+ * Return: the number of characters read, or -1 on failure
  */
 ssize_t get_input(info_t *info)
 {
