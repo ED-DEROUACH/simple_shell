@@ -1,7 +1,4 @@
 #include "shell.h"
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
 
 /**
  * _strcpy - copies a string
@@ -12,7 +9,17 @@
  */
 char *_strcpy(char *dest, char *src)
 {
-	return (strcpy(dest, src));
+	int i = 0;
+
+	if (dest == src || src == 0)
+		return (dest);
+	while (src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = 0;
+	return (dest);
 }
 
 /**
@@ -23,25 +30,38 @@ char *_strcpy(char *dest, char *src)
  */
 char *_strdup(const char *str)
 {
+	int length = 0;
+	char *ret;
+
 	if (str == NULL)
 		return (NULL);
-
-	return (strdup(str));
+	while (*str++)
+		length++;
+	ret = malloc(sizeof(char) * (length + 1));
+	if (!ret)
+		return (NULL);
+	for (length++; length--;)
+		ret[length] = *--str;
+	return (ret);
 }
 
 /**
- * _puts - prints an input string
- * @str: the string to be printed
+ *_puts - prints an input string
+ *@str: the string to be printed
  *
  * Return: Nothing
  */
 void _puts(char *str)
 {
-	if (str == NULL)
-		return;
+	int i = 0;
 
-	printf("%s", str);
-	fflush(stdout);
+	if (!str)
+		return;
+	while (str[i] != '\0')
+	{
+		_putchar(str[i]);
+		i++;
+	}
 }
 
 /**
