@@ -1,18 +1,18 @@
 #include "shell.h"
 
 /**
- * _myexit - exits the shell
+ * _myexit - exits the shell  
  * @info: Struct
- * Return: exits
+ * Return: exits  
  */
 int _myexit(info_t *info)
 {
-	int exittest;
+	int exittest; 
 
 	if (info->argv[1])
 	{
 		exittest = _erratoi(info->argv[1]);
-		if (exittest == -1)
+		if(exittest == -1)
 		{
 			info->status = 2;
 			print_error(info, "wrong number: ");
@@ -24,21 +24,21 @@ int _myexit(info_t *info)
 		return (-2);
 	}
 	info->err_num = -1;
-	return (-2);
+	return(-2);
 }
 
 /**
  * _mycd - changes the current dire
- * @info: Struct
+ * @info: Struct  
  *  Return: 0
  */
 int _mycd(info_t *info)
 {
 	char *s, *dir, buf[1024];
 	int dir_ret;
-
+  
 	s = getcwd(buf, 1024);
-	if (!s)
+	if(!s)
 		_puts("TODO: >>getcwd failure ems here<<\n");
 	if (!info->argv[1])
 	{
@@ -48,11 +48,11 @@ int _mycd(info_t *info)
 		else
 			dir_ret = chdir(dir);
 	}
-	else if (_strcmp(info->argv[1], "-") == 0)
+	else if(_strcmp(info->argv[1], "-") == 0)
 	{
-		if (!_getenv(info, "OLDPWD="))
+		if(!_getenv(info, "OLDPWD="))
 		{
-			_puts(s);
+			_puts(s)
 			_putchar('\n');
 			return (1);
 		}
@@ -87,5 +87,5 @@ int _myhelp(info_t *info)
 	_puts("help call work\n");
 	if (0)
 		_puts(*ar_ary);
-	return (0);
+	return (0)
 }
