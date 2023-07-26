@@ -35,10 +35,10 @@ int _myexit(info_t *info)
 int _mycd(info_t *info)
 {
 	char *s, *dir, buf[1024];
-	int dir_re;
+	int dir_ret;
 
 	s = getcwd(buf, 1024);
-	if(!s)
+	if (!s)
 		_puts("TODO: >>getcwd failure ems here<<\n");
 	if (!info->argv[1])
 	{
@@ -48,7 +48,7 @@ int _mycd(info_t *info)
 		else
 			dir_ret = chdir(dir);
 	}
-	else if (_strcmp(info->argv[1], "-") == 0)  
+	else if (_strcmp(info->argv[1], "-") == 0)
 	{
 		if (!_getenv(info, "OLDPWD="))
 		{
@@ -60,7 +60,7 @@ int _mycd(info_t *info)
 		dir_ret = chdir((dir = _getenv(info, "OLDPWD=")) ? dir : "/");
 	}
 	else
-		dir_ret = _chdir(info->argv[1]);
+		dir_ret = chdir(info->argv[1]);
 	if (dir_ret == -1)
 	{
 		print_error(info, "can't cd to ");
@@ -69,7 +69,7 @@ int _mycd(info_t *info)
 	else
 	{
 		_setenv(info, "OLDPWD", _getenv(info, "PWD="));
-		setenv(info, "PWD", getcwd(buf, 1024));
+		_setenv(info, "PWD", getcwd(buf, 1024));
 	}
 	return (0);
 }
@@ -83,7 +83,7 @@ int _myhelp(info_t *info)
 {
 	char **ar_ary;
 
-	ar_ary = info-argv;
+	ar_ary = info->argv;
 	_puts("help call work\n");
 	if (0)
 		_puts(*ar_ary);
