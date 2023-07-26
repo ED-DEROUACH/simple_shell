@@ -91,6 +91,7 @@ int print_d(int in, int fd)
  */
 char *convert_number(long int nb, int b, int f)
 {
+	static char *array;
 	static char buffer[50];
 	char sign = 0;
 	char *p;
@@ -101,7 +102,7 @@ char *convert_number(long int nb, int b, int f)
 		n = -nb;
 		sign = '-';
 	}
-	char *array = (f & CONVERT_LOWERCASE) ? "0123456789abcdef"
+	array = (f & CONVERT_LOWERCASE) ? "0123456789abcdef"
 		: "0123456789ABCDEF";
 
 	p = &buffer[49];

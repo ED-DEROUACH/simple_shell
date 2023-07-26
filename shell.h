@@ -25,7 +25,7 @@
 
 /* Converting numbers */
 #define CONVERT_LOWERCASE 1
-#define CONVERT_UPPERCASE 2
+#define CONVERT_UNSIGNED 2
 
 /* System getline */
 #define USE_GETLINE 0
