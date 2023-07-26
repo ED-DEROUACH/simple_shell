@@ -24,28 +24,15 @@ int unset_alias(info_t *info, char *str)
 {
 	char *p, c;
 	int ret;
-	int index;
-	int count = 0;
 
 	p = _strchr(str, '=');
 	if (!p)
 		return (1);
-
 	c = *p;
 	*p = 0;
-
-	index = get_node_index(info->alias, node_starts_with
-			(info->alias, str, -1));
-
-	while (count < index)
-	{
-		info->alias = info->alias->next;
-		count++;
-	}
-
-	ret = delete_node_at_index(&(info->alias), index);
+	ret = delete_node_at_index(&(info->alias),
+		get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
 	*p = c;
-
 	return (ret);
 }
 
