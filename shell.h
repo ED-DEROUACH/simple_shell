@@ -230,6 +230,6 @@ ssize_t input_buf(info_t *, char **, size_t *);
 ssize_t get_input(info_t *);
 ssize_t read_buf(info_t *, char *, size_t *);
 int _getline(info_t *, char **, size_t *);
-void sigintHandler(__attribute__(unused)int);
+void sigintHandler(int);
 
 #endif
