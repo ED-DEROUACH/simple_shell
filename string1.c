@@ -53,22 +53,5 @@ void _puts(char *str)
  */
 int _putchar(char c)
 {
-	static int i;
-	static char buf[WRITE_BUF_SIZE];
-
-	for (;;)
-	{
-		if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
-		{
-			if (write(1, buf, i) == -1)
-				return (-1);
-			i = 0;
-			break;
-		}
-		else
-		{
-			buf[i++] = c;
-		}
-	}
-	return (1);
+	return write(1, &c, 1);
 }
