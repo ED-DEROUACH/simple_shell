@@ -52,7 +52,7 @@ int _mycd(info_t *info)
 	{
 		if(!_getenv(info, "OLDPWD="))
 		{
-			_puts(s)
+			_puts(s);
 			_putchar('\n');
 			return (1);
 		}
@@ -87,5 +87,5 @@ int _myhelp(info_t *info)
 	_puts("help call work\n");
 	if (0)
 		_puts(*ar_ary);
-	return (0)
+	return (0);
 }
