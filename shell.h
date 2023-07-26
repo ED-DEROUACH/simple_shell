@@ -225,4 +225,11 @@ char *find_path(info_t *, char *, char *);
 
 ssize_t get_input(info_t *);
 
+/* getline_oth.c */
+ssize_t input_buf(info_t *, char **, size_t *);
+ssize_t get_input(info_t *);
+ssize_t read_buf(info_t *, char *, size_t *);
+int _getline(info_t *, char **, size_t *);
+void sigintHandler(__attribute__(unused)int);
+
 #endif

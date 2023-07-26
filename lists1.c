@@ -9,9 +9,14 @@
  */
 size_t list_len(const list_t *h)
 {
-if (!h)
-return (0);
-return (1 + list_len(h->next));
+	size_t i = 0;
+
+	while (h)
+	{
+		h = h->next;
+		i++;
+	}
+	return (i);
 }
 
 /**
@@ -87,17 +92,17 @@ return (i);
  */
 list_t *node_starts_with(list_t *node, char *prefix, char c)
 {
-list_t *current_node = node;
-char *p = NULL;
+	char *p = NULL;
 
-for (; current_node; current_node = current_node->next)
-{
-p = starts_with(current_node->str, prefix);
-if (p && ((c == -1) || (*p == c)))
-return (current_node);
-}
+	while (node)
+	{
+		p = starts_with(node->str, prefix);
+		if (p && ((c == -1) || (*p == c)))
+			return (node);
+		node = node->next;
+	}
 
-return (NULL);
+	return (NULL);
 }
 
 /**
@@ -107,12 +112,16 @@ return (NULL);
  *
  * Return: index of node or -1
  */
-ssize_t get_node_index(list_t *head, list_t *node)
+ssize_t get_node_index(list_t *head, list_t *nd)
 {
-for (size_t i = 0; head; head = head->next, i++)
-{
-if (head == node)
-return (i);
-}
-return (-1);
+	size_t j = 0;
+
+	while (head)
+	{
+		if (head == nd)
+			return (j);
+		head = head->next;
+		j++;
+	}
+	return (-1);
 }
