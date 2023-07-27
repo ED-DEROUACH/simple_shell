@@ -18,9 +18,9 @@ int _erratoi(char *str)
 		if (str[j] >= '0' && str[j] <= '9')
 		{
 			r *= 10;
-			r += (str[i] - '0');
+			r += (str[j] - '0');
 			if (r > INT_MAX)
-				return (-1)
+				return (-1);
 		}
 		else
 			return (0);
@@ -98,7 +98,7 @@ int print_d(int in, int fd)
 char *convert_number(long int nb, int b, int f)
 {
 	static char *array;
-	static char buf[50];
+	static char buff[50];
 	char sg = 0;
 	char *p;
 	unsigned long n = nb;
@@ -108,9 +108,9 @@ char *convert_number(long int nb, int b, int f)
 		n = -nb;
 		sg = '-';
 	}
-	char *array = (f & CONVERT_LOWERCASE) ? "0123456789abcdef" :
-		"0123456789ABCDEF"
-	p = &buf[49];
+	array = (f & CONVERT_LOWERCASE) ? "0123456789abcdef" :
+		"0123456789ABCDEF";
+	p = &buff[49];
 	*p = '\0';
 	do {
 		*--p = array[n % b];

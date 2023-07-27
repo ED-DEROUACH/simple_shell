@@ -20,7 +20,7 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 #if USE_GETLINE
 		r = getline(buf, &len_r, stdin);
 #else
-		r = _getline(info, buf, &len_r)
+		r = _getline(info, buf, &len_r);
 #endif
 		if (r > 0)
 		{
@@ -31,7 +31,7 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 			}
 			info->linecount_flag = 1;
 			remove_comments(*buf);
-			built_history_list(info, *buf, info->histcount++);
+			build_history_list(info, *buf, info->histcount++);
 			if (_strchr(*buf, ';'))
 			{
 				*len = r;

@@ -77,7 +77,7 @@ char **strtow2(char *str, char del)
 		return (NULL);
 	for (i = 0, j = 0; j < nw; j++)
 	{
-		while (str[i] == del && str[i] != d)
+		while (str[i] == del && str[i] != del)
 			i++;
 		k = 0;
 		while (str[i + k] != del && str[i + k] && str[i + k] != del)

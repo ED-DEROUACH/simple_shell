@@ -108,10 +108,14 @@ return (NULL);
  */
 ssize_t get_node_index(list_t *head, list_t *node)
 {
-for (size_t i = 0; head; head = head->next, i++)
-{
-if (head == node)
-return (i);
-}
-return (-1);
+	size_t j = 0;
+
+	while (head)
+	{
+		if (head == node)
+			return (j);
+		head = head->next;
+		j++;
+	}
+	return (-1);
 }

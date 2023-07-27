@@ -10,13 +10,13 @@ int _myexit(info_t *inf)
 
 	if (inf->argv[1])
 	{
-		exitest = _erratoi(inf->argv[1]);
+		exittest = _erratoi(inf->argv[1]);
 		if (exittest == -1)
 		{
-			info->status = 2;
+			inf->status = 2;
 			print_error(inf, "unallowed nmb");
 			_eputs(inf->argv[1]);
-			_eputchar("\n");
+			_eputchar('\n');
 			return (1);
 		}
 		inf->err_num = _erratoi(inf->argv[1]);
@@ -41,7 +41,7 @@ int _mycd(info_t *inf)
 		_puts("TODO:>>getcwd fail error msg\n");
 	if (!inf->argv[1])
 	{
-		dir = _getenv(inf, "HOME = ");
+		d = _getenv(inf, "HOME = ");
 		if (!d)
 			dir_ret = chdir((_getenv(inf, "PWD=")) ? d : "/");
 		else
@@ -52,11 +52,11 @@ int _mycd(info_t *inf)
 		if (!_getenv(inf, "OLDPWD="))
 		{
 			_puts(s);
-			_puchar('\n');
+			_putchar('\n');
 			return (1);
 		}
 		_puts(_getenv(inf, "OLDPWD=")), putchar('\n');
-		dir_ret = chdir((dir = _getenv(inf, "OLDPWD=")) ? d : "/");
+		dir_ret = chdir((d = _getenv(inf, "OLDPWD=")) ? d : "/");
 	}
 	else
 		dir_ret = chdir(inf->argv[1]);

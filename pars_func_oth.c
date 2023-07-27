@@ -1,4 +1,4 @@
-#include "shell"
+#include "shell.h"
 
 /**
 * is_cmd - see if the file is executable
@@ -11,7 +11,7 @@ int is_cmd(info_t *info, char *path)
 	struct stat s;
 
 	(void)info;
-	if (!path || path, &s)
+	if (!path || stat(path, &s))
 		return (0);
 	if (s.st_mode & S_IFREG)
 	{
@@ -33,7 +33,7 @@ char *dup_chars(char *path, int beg, int end)
 	static char buffer[1024];
 	int j = 0, t = 0;
 
-	i = beg;
+	j = beg;
 	while (j < end)
 	{
 		if (path[j] != ':')
@@ -68,7 +68,7 @@ char *find_path(info_t *info, char *paths, char *cmd)
 	{
 		if (!paths[j] || paths[j] == ':')
 		{
-			path = dup_chars(paths, curr, i);
+			path = dup_chars(paths, curr, j);
 			if (!*path)
 				_strcat(path, cmd);
 			else

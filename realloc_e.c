@@ -44,22 +44,23 @@ free(temp);
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-if (!ptr)
-return (malloc(new_size));
-if (!new_size)
-{
-free(ptr);
-return (NULL);
-}
-if (new_size == old_size)
-return (ptr);
+	char *p;
 
-void *p = malloc(new_size);
-if (!p)
-return (NULL);
-
-memcpy(p, ptr, (old_size < new_size) ? old_size : new_size);
-free(ptr);
-
-return (p);
+	if (!ptr)
+		return (malloc(new_size));
+	if (!new_size)
+	{
+		free(ptr);
+		return (NULL);
+	}
+	if (new_size == old_size)
+		return (ptr);
+	p = malloc(new_size);
+	if (!p)
+		return (NULL);
+	old_size = old_size < new_size ? old_size : new_size;
+	while (old_size--)
+		p[old_size] = ((char *)ptr)[old_size];
+	free(ptr);
+	return (p);
 }
