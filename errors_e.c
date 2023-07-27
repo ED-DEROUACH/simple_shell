@@ -50,34 +50,24 @@ int _eputchar(char c)
 	return (1);
 }
 /**
- * _putfd - writes the character c to given fd
- * @c: The character to print
- * @fd: The filedescriptor to write to
+ * _putfd - writes the char
+ * @ch: The char to print
+ * @fdesc: The file to write in
  *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * Return: On success 1. otherwise -1 is returned
  */
-int _putfd(char c, int fd)
+int _putfd(char ch, int fdesc)
 {
-	static int i;
+	static int j;
 	static char buf[WRITE_BUF_SIZE];
-	int j;
 
-	if (c != BUF_FLUSH)
+	if (ch == BUF_FLUSH || j >= WRITE_BUF_SIZE)
 	{
-		buf[i++] = c;
+		write(fdesc, buf, j);
+		j = 0;
 	}
-
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
-	{
-		while (j < i)
-		{
-			write(fd, &buf[j], 1);
-			j++;
-		}
-		i = 0;
-	}
-
+	if (ch != BUF_FLUSH)
+		buf[j++] = ch;
 	return (1);
 }
 

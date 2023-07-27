@@ -25,31 +25,31 @@ char *get_history_file(info_t *info)
 }
 
 /**
- * write_history - creates a file, or appends to an existing file
- * @info: the parameter struct
+ * write_history - creates a file
+ * @info: struct
  *
- * Return: 1 on success, else -1
+ * Return: 1 on success, otherwise -1
  */
 int write_history(info_t *info)
 {
-	ssize_t fd;
+	ssize_t file_d;
 	char *filename = get_history_file(info);
-	list_t *node = NULL;
+	list_t *nd = NULL;
 
 	if (!filename)
 		return (-1);
 
-	fd = open(filename, O_CREAT | O_TRUNC | O_RDWR, 0644);
+	file_d = open(filename, O_CREAT | O_TRUNC | O_RDWR, 0644);
 	free(filename);
-	if (fd == -1)
+	if (file_d == -1)
 		return (-1);
-	for (node = info->history; node; node = node->next)
+	for (nd = info->history; nd; nd = nd->next)
 	{
-		_putsfd(node->str, fd);
-		_putfd('\n', fd);
+		_putsfd(nd->str, file_d);
+		_putfd('\n', file_d);
 	}
-	_putfd(BUF_FLUSH, fd);
-	close(fd);
+	_putfd(BUF_FLUSH, file_d);
+	close(file_d);
 	return (1);
 }
 
