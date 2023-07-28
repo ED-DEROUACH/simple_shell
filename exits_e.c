@@ -3,39 +3,69 @@
 
 /**
  **_strncpy - copies a string
- *@dest: the destination string to be copied to
- *@src: the source string
- *@n: the amount of characters to be copied
- *Return: the concatenated string
+ *@d: the destination string to be copied to
+ *@sr: the source string
+ *@by: the amount of char
+ *Return: string
  */
-char *_strncpy(char *dest, char *src, int n)
+char *_strncpy(char *d, char *sr, int by)
 {
-strncpy(dest, src, n);
-dest[n - 1] = '\0';
+	int i, j;
+	char *s = d;
 
-return (dest);
+	i = 0;
+	while (sr[i] != '\0' && i < by - 1)
+	{
+		d[i] = sr[i];
+		i++;
+	}
+	if (i < by)
+	{
+		j = i;
+		while (j < by)
+		{
+			d[j] = '\0';
+			j++;
+		}
+	}
+	return (s);
 }
 
 /**
  **_strncat - concatenates two strings
- *@dest: the first string
+ *@ds: the first string
  *@src: the second string
- *@n: the amount of bytes to be maximally used
- *Return: the concatenated string
+ *@nb: the amount of bytes to use
+ *Return: string
  */
-char *_strncat(char *dest, char *src, int n)
+char *_strncat(char *ds, char *src, int nb)
 {
-	strncat(dest, src, n);
+	int i, j = 0;
+	char *s = ds;
 
-	return (dest);
+	for (i = 0; ds[i] != '\0'; i++)
+		;
+	for (j = 0; src[j] != '\0' && j < nb; j++)
+	{
+		ds[i] = src[j];
+		i++;
+	}
+	if (j < nb)
+		ds[i] = '\0';
+	return (s);
+
 }
 /**
  **_strchr - locates a character in a string
- *@s: the string to be parsed
- *@c: the character to look for
- *Return: (s) a pointer to the memory area s
+ *@str: string
+ *@ch: char
+ *Return: a pointer
  */
-char *_strchr(char *s, char c)
+char *_strchr(char *str, char ch)
 {
-	return (strchr(s, c));
+	do {
+		if (*str == ch)
+			return (str);
+	} while (*str++ != '\0');
+	return (NULL);
 }

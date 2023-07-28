@@ -63,7 +63,7 @@ int _myunsetenv(info_t *info)
 
 	if (info->argc == 1)
 	{
-		_eputs("not too many args.\n");
+		_eputs("too few args.\n");
 		return (1);
 	}
 	for (x = 1; x <= info->argc; x++)
