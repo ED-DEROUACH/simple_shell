@@ -10,12 +10,12 @@ void _eputs(char *s)
 {
 	int x;
 
-	if (!str)
+	if (!s)
 		return;
 
-	for (x = 0; str[x] != '\0'; x++)
+	for (x = 0; s[x] != '\0'; x++)
 	{
-		_eputchar(str[x]);
+		_eputchar(s[x]);
 	}
 }
 
@@ -32,12 +32,12 @@ int _eputchar(char ch)
 	if (ch == BUF_FLUSH || x >= WRITE_BUF_SIZE)
 	{
 		write(2, buffer, x);
-		i = 0;
+		x = 0;
 	}
 
 	if (ch != BUF_FLUSH)
 	{
-		buffer[i++] = ch;
+		buffer[x++] = ch;
 	}
 
 	return (1);
