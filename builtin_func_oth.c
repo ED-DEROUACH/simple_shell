@@ -14,7 +14,7 @@ int _myexit(info_t *inf)
 		if (exittest == -1)
 		{
 			inf->status = 2;
-			print_error(inf, "unallowed nmb");
+			print_error(inf, "Illegal number");
 			_eputs(inf->argv[1]);
 			_eputchar('\n');
 			return (1);
@@ -38,7 +38,7 @@ int _mycd(info_t *inf)
 
 	s = getcwd(buf, 1024);
 	if (!s)
-		_puts("TODO:>>getcwd fail error msg\n");
+		_puts("TODO:>>getcwd failure error emsg here\n");
 	if (!inf->argv[1])
 	{
 		d = _getenv(inf, "HOME = ");
@@ -62,7 +62,7 @@ int _mycd(info_t *inf)
 		dir_ret = chdir(inf->argv[1]);
 	if (dir_ret == -1)
 	{
-		print_error(inf, "can not use cd");
+		print_error(inf, "can't cd to");
 		_eputs(inf->argv[1]), _eputchar('\n');
 	}
 	else
@@ -83,7 +83,7 @@ int _myhelp(info_t *inf)
 	char **a_array;
 
 	a_array = inf->argv;
-	_puts("Help the call work\n");
+	_puts("help the call works. Function not yet implemented\n");
 	if (0)
 		_puts(*a_array);
 	return (0);
