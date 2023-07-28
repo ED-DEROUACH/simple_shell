@@ -6,69 +6,87 @@
 /**
  * _strcpy - copies a string
  * @dest: the destination
- * @src: the source
- *
- * Return: pointer to destination
+ * @src: source
+ * Return: pointer
  */
 char *_strcpy(char *dest, char *src)
 {
-return (strcpy(dest, src));
+	int x = 0;
+
+	if (dest == src || src == 0)
+		return (dest);
+	while (src[x])
+	{
+		dest[x] = src[x];
+		x++;
+	}
+	dest[x] = '\0';
+	return (dest);
+
 }
 
 /**
  * _strdup - duplicates a string
- * @str: the string to duplicate
- *
- * Return: pointer to the duplicated string
+ * @s: string
+ * Return: pointer
  */
-char *_strdup(const char *str)
+char *_strdup(const char *s)
 {
-if (str == NULL)
-return (NULL);
+	int l = 0;
+	char *r;
 
-return (strdup(str));
+	if (s == NULL)
+		return (NULL);
+	while (*s++)
+	{
+		l++;
+	}
+	r = malloc(sizeof(char) * (l + 1));
+	if (!r)
+		return (NULL);
+	for (l++; l--;)
+	{
+		r[l] = *--s;
+	}
+	return (r);
 }
 
 /**
  *_puts - prints an input string
- *@str: the string to be printed
- *
+ *@s: the string to be printed
  * Return: Nothing
  */
-void _puts(char *str)
+void _puts(char *s)
 {
-if (str == NULL)
-return;
+	int x;
 
-printf("%s", str);
-fflush(stdout);
+	if (!s)
+		return;
+	for (x = 0; s[x] != '\0'; x++)
+	{
+		_putchar(s[x]);
+	}
 }
 
 /**
  * _putchar - writes the character c to stdout
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * @ch: char to print
+ * Return: On success 1, -1 otherwise
  */
-int _putchar(char c)
+int _putchar(char ch)
 {
-	static int i;
-	static char buf[WRITE_BUF_SIZE];
+	static int x;
+	static char buffer[WRITE_BUF_SIZE];
 
-	for (;;)
+	if (ch == BUF_FLUSH || x >= WRITE_BUF_SIZE)
 	{
-		if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
-		{
-			if (write(1, buf, i) == -1)
-				return (-1);
-			i = 0;
-			break;
-		}
-		else
-		{
-			buf[i++] = c;
-		}
+		write(1, buffer, x);
+		x = 0;
 	}
+	if (ch != BUF_FLUSH)
+	{
+		buffer[x++] = ch;
+	}
+
 	return (1);
 }
