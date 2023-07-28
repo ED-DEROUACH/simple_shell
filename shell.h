@@ -53,7 +53,7 @@ typedef struct liststr
 /**
  *struct passinfo - contains pseudo-arguements to pass into
  *@arg: a string contain argument
- *@argv: array of strings 
+ *@argv: array of strings
  *@path: string path
  *@argc: argument count
  *@line_count: the error count
