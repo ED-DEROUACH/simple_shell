@@ -155,9 +155,9 @@ return (0);
  */
 int replace_string(char **old, char *new)
 {
-free(*old);
-*old = strdup(new);
-if (*old)
-return (1);
-return (0);
+	free(*old);
+	*old = strdup(new);
+	if (*old)
+	return (1);
+	return (0);
 }
