@@ -127,8 +127,8 @@ int loophsh(char **);
 /* errors_e.c */
 void _eputs(char *);
 int _eputchar(char);
-int _putfd(char c, int fd);
-int _putsfd(char *str, int fd);
+int _putfd(char, int);
+int _putsfd(char *, int);
 
 /* str_func_oth.c */
 int _strlen(char *);

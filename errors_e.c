@@ -2,49 +2,42 @@
 
 /**
  *_eputs - prints an input string
- * @str: the string to be printed
+ * @s: the string to be printed
  *
  * Return: Nothing
  */
-void _eputs(char *str)
+void _eputs(char *s)
 {
-	int i;
+	int x;
 
 	if (!str)
 		return;
 
-	for (i = 0; str[i] != '\0'; i++)
+	for (x = 0; str[x] != '\0'; x++)
 	{
-		_eputchar(str[i]);
+		_eputchar(str[x]);
 	}
 }
 
 /**
  * _eputchar - writes the character c to stderr
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * @ch: char to print
+ * Return: On success 1, -1 otherwise
  */
-int _eputchar(char c)
+int _eputchar(char ch)
 {
-	static int i;
-	static char buf[WRITE_BUF_SIZE];
-	int j;
+	static int x;
+	static char buffer[WRITE_BUF_SIZE];
 
-	if (c != BUF_FLUSH)
+	if (ch == BUF_FLUSH || x >= WRITE_BUF_SIZE)
 	{
-		buf[i] = c;
-		i++;
+		write(2, buffer, x);
+		i = 0;
 	}
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (ch != BUF_FLUSH)
 	{
-		for (j = i - 1; j >= 0; j--)
-		{
-			write(2, &buf[j], 1);
-		}
-		i = 0;
+		buffer[i++] = ch;
 	}
 
 	return (1);
@@ -53,41 +46,39 @@ int _eputchar(char c)
  * _putfd - writes the char
  * @ch: The char to print
  * @fdesc: The file to write in
- *
- * Return: On success 1. otherwise -1 is returned
+ * Return: On success 1. -1 otherwise
  */
 int _putfd(char ch, int fdesc)
 {
-	static int j;
-	static char buf[WRITE_BUF_SIZE];
+	static int x;
+	static char buffer[WRITE_BUF_SIZE];
 
-	if (ch == BUF_FLUSH || j >= WRITE_BUF_SIZE)
+	if (ch == BUF_FLUSH || x >= WRITE_BUF_SIZE)
 	{
-		write(fdesc, buf, j);
-		j = 0;
+		write(fdesc, buffer, x);
+		x = 0;
 	}
 	if (ch != BUF_FLUSH)
-		buf[j++] = ch;
+		buffer[x++] = ch;
 	return (1);
 }
 
 /**
  *_putsfd - prints an input string
- * @str: the string to be printed
- * @fd: the filedescriptor to write to
- *
+ * @s: the string to be printed
+ * @fdesc: the filedescriptor to write to
  * Return: the number of chars put
  */
 
-int _putsfd(char *str, int fd)
+int _putsfd(char *s, int fdesc)
 {
-	int i = 0;
+	int x = 0;
 
-	if (!str)
+	if (!s)
 		return (0);
-	while (*str)
+	while (*s)
 	{
-		i += _putfd(*str++, fd);
+		x += _putfd(*s++, fdesc);
 	}
-	return (i);
+	return (x);
 }
