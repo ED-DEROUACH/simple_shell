@@ -19,9 +19,8 @@ int _myhistory(info_t *info)
  */
 int unset_alias(info_t *info, char *s)
 {
-	char *p = NULL, c;
+	char *p ,c;
 	int r;
-	int index;
 
 	p = _strchr(s, '=');
 	if (!p)
@@ -30,10 +29,8 @@ int unset_alias(info_t *info, char *s)
 	c = *p;
 	*p = 0;
 
-	index = get_node_index(info->alias, node_starts_with
-	(info->alias, s, -1));
-
-	r = delete_node_at_index(&(info->alias), index);
+	r = delete_node_at_index(&(info->alias),
+		get_node_index(info->alias, node_starts_with(info->alias, s, -1)));
 	*p = c;
 
 	return (r);
