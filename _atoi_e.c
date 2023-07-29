@@ -21,33 +21,60 @@ int interactive(info_t *info)
 
 /**
  * is_delim - checks if character is a delimeter
- * @c: the char to check
- * @delim: the delimeter string
- * Return: 1 if true, 0 otherwise
+ * @ch: ch to check
+ * @dlm: delim string
+ * Return: 1 on success, 0 otherwise
  */
-int is_delim(char c, char *delim)
+int is_delim(char ch, char *dlm)
 {
-	return ((strchr(delim, c) != NULL) ? 1 : 0);
+	while (*dlm)
+	{
+		if (*dlm++ == ch)
+			return (1);
+	}
+	return (0);
 }
 
 /**
- *_isalpha - checks for alphabetic character
- *@c: The character to input
- *Return: 1 if true, 0 otherwise
+ *_isalpha - checks if a ch is alphabet
+ *@ch: char to test
+ *Return: 1 success, 0 otherwise
  */
 
-int _isalpha(int c)
+int _isalpha(int ch)
 {
-	return (((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) ? 1 : 0);
+	return (((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')) ? 1 : 0);
 }
 
 /**
- *_atoi - converts a string to an integer
- *@s: the string to be converted
- *Return: 0 if no numbers in string, converted number otherwise
+ *_atoi - converts a string to int
+ *@str: string to convert
+ *Return: 0 for no nb, otherwise; resultat
  */
 
-int _atoi(char *s)
+int _atoi(char *str)
 {
-	return (atoi(s));
+	int x = 0, sg = 1, fg = 0, output;
+	unsigned int res = 0;
+
+	while (str[x] != '\0' && fg != 2)
+	{
+		if (str[x] == '-')
+			sg *= -1;
+		if (str[x] >= '0' && str[x] <= '9')
+		{
+			fg = 1;
+			res *= 10;
+			res += (str[x] - '0');
+		}
+		else if (fg == 1)
+			fg = 2;
+		x++;
+	}
+	if (sg == -1)
+		output = -res;
+	else
+		output = res;
+	return (output);
+
 }
