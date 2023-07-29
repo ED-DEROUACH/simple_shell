@@ -12,6 +12,9 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 	ssize_t r = 0;
 	size_t len_r = 0;
 
+	if (!info || !buf || !len)
+		return -1;
+
 	if (!*len)
 	{
 		free(*buf);
@@ -42,7 +45,6 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 	return (r);
 }
 
-
 /**
  * get_input - get line
  * @info: struct
@@ -55,6 +57,9 @@ ssize_t get_input(info_t *info)
 	ssize_t r = 0;
 	char **buf_p = &(info->arg), *p;
 
+	if (!info)
+		return -1;
+
 	_putchar(BUF_FLUSH);
 	r = input_buf(info, &buf, &len);
 	if (r == -1)
@@ -63,7 +68,6 @@ ssize_t get_input(info_t *info)
 	{
 		j = i;
 		p = buf + i;
-
 		check_chain(info, buf, &j, i, len);
 		while (j < len)
 		{
@@ -98,6 +102,9 @@ ssize_t read_buf(info_t *info, char *buf, size_t *i)
 {
 	ssize_t t = 0;
 
+	if (!info || !buf || !i)
+		return -1;
+
 	if (*i)
 		return (0);
 	t = read(info->readfd, buf, READ_BUF_SIZE);
@@ -111,7 +118,7 @@ ssize_t read_buf(info_t *info, char *buf, size_t *i)
  * @info: struct
  * @ptr: pointer
  * @lg: size
- * Return: intrger
+ * Return: integer
  */
 int _getline(info_t *info, char **ptr, size_t *lg)
 {
@@ -120,6 +127,9 @@ int _getline(info_t *info, char **ptr, size_t *lg)
 	size_t k;
 	ssize_t r = 0, s = 0;
 	char *p = NULL, *new_p = NULL, *c;
+
+	if (!info || !ptr || !lg)
+		return -1;
 
 	p = *ptr;
 	if (p && lg)
@@ -153,8 +163,9 @@ int _getline(info_t *info, char **ptr, size_t *lg)
 }
 
 /**
- * sigintHandler - a function ued to stop using ctrl-c
+ * sigintHandler - a function used to stop using ctrl-c
  * @sig_num: signal number
+ *
  * Return: nothing
  */
 void sigintHandler(__attribute__((unused))int sig_num)

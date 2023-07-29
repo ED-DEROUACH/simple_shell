@@ -1,33 +1,37 @@
 #include "shell.h"
 
 /**
-*clear_info - initializes all the struct info_t types with null
-*@info: address of the struct
-*Return: nothing
+* clear_info - initializes all the struct info_t types with null
+* @info: address of the struct
+* Return: nothing
 */
 void clear_info(info_t *info)
 {
+	if (!info)
+		return;
+
 	info->arg = NULL;
 	info->argv = NULL;
 	info->path = NULL;
 	info->argc = 0;
 }
 
-
 /**
-*set_info - initializes the struct info_t
-*@info: address the address
-*@av: argument vector
-*Return: nothing
+* set_info - initializes the struct info_t
+* @info: address the address
+* @av: argument vector
+* Return: nothing
 */
 void set_info(info_t *info, char **av)
 {
-	int j;
+	int i;
+
+	if (!info || !av)
+		return;
 
 	info->fname = av[0];
-	if (info->arg)
-	{
-		info->argv = strtow(info->arg, "\t");
+	if (info->arg){
+		info->argv = _strtow(info->arg, "\t");
 		if (!info->argv)
 		{
 			info->argv = malloc(sizeof(char *) * 2);
@@ -37,29 +41,30 @@ void set_info(info_t *info, char **av)
 				info->argv[1] = NULL;
 			}
 		}
-		for (j = 0; info->argv && info->argv[j]; j++)
+		for (i = 0; info->argv && info->argv[i]; i++)
 			;
-		info->argc = j;
+		info->argc = i;
 
 		replace_alias(info);
 		replace_vars(info);
 	}
 }
 
-
 /**
-*free_info - free the struct
-*@info: the address of the struct
-*@tr: true when the struct is freed
-*Return: nothing
+* free_info - free the struct
+* @info: the address of the struct
+* @tr: true when the struct is freed
+* Return: nothing
 */
 void free_info(info_t *info, int tr)
 {
+	if (!info)
+		return;
+
 	ffree(info->argv);
 	info->argv = NULL;
 	info->path = NULL;
-	if (tr)
-	{
+	if (tr){
 		if (!info->cmd_buf)
 			free(info->arg);
 		if (info->env)
@@ -69,10 +74,12 @@ void free_info(info_t *info, int tr)
 		if (info->alias)
 			free_list(&(info->alias));
 		ffree(info->environ);
-			info->environ = NULL;
+		info->environ = NULL;
 		bfree((void **)info->cmd_buf);
 		if (info->readfd > 2)
 			close(info->readfd);
 		_putchar(BUF_FLUSH);
 	}
 }
+
+

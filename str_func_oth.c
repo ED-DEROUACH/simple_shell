@@ -18,8 +18,6 @@ int _strlen(char *str)
 	return (j);
 }
 
-
-
 /**
 * _strcmp - compare two strings
 * @str1: string 1
@@ -28,55 +26,51 @@ int _strlen(char *str)
 */
 int _strcmp(char *str1, char *str2)
 {
-	while (*str1 && *str2)
-	{
-		if (*str1 != *str2)
-			return (*str1 - *str2);
-		str1++;
-		str2++;
-	}
-	if (*str1 == *str2)
-		return (0);
-	else if (*str1 < *str2)
-		return (-1);
-	else
-		return (1);
+    while (*str1 && *str2)
+    {
+        if (*str1 != *str2)
+            return (*str1 - *str2);
+        str1++;
+        str2++;
+    }
+
+    return ((unsigned char)*str1 - (unsigned char)*str2);
 }
 
-
-
 /**
-* starts_with - checks if string begings with a given substring
-* @stack: string to search
-* @need: substring to find
-* Return: address of next char of the string or NULL
+*starts_with - checks if string begins with a given substring
+*@stack: string to search
+*@need: substring to find
+*Return: address of next char of the string or NULL
 */
 char *starts_with(const char *stack, const char *need)
 {
-	while (*need)
+	while(*need)
 	{
-		if (*need++ != *stack++)
-			return (NULL);
-	}
+        if (*need != *stack)
+            return (NULL);
+        need++;
+        stack++;
+    }
 	return ((char *)stack);
 }
 
-
-
 /**
-* _strcat - concatenates two strings
-* @d: the destination
-* @sr: the source
-* Return: pointer to the destination
+*_strcat - concatenates two strings
+*@d: the destination
+*@sr: the source
+*Return: pointer to the destination
 */
-char *_strcat(char *d, char *sr)
+char *_strcat(char * d, char *sr)
 {
 	char *rt = d;
 
 	while (*d)
-		d++;
-	while (*sr)
-		*d++ = *sr++;
-	*d = *sr;
-	return (rt);
+        d++;
+    while(*sr)
+        *d++ = *sr++;
+    *d = '\0';
+    return (rt);
 }
+
+
